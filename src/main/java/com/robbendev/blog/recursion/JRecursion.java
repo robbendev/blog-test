@@ -13,14 +13,14 @@ public class JRecursion {
 	 * @param n n
 	 * @return 阶乘
 	 */
-	public static int factorialRecursion(final BigInteger n) {
+	public static BigInteger factorialRecursion(final BigInteger n) {
 		if (n.compareTo(BigInteger.ZERO) < 0) {
 			throw new IllegalArgumentException();
 		}
 		if (n.compareTo(BigInteger.ONE) == 0) {
-			return 1;
+			return BigInteger.ONE;
 		} else {
-			return factorialRecursion(n.subtract(BigInteger.ONE).multiply(n));
+			return factorialRecursion(n.subtract(BigInteger.ONE)).multiply(n);
 		}
 	}
 
@@ -46,11 +46,13 @@ public class JRecursion {
 	 * @param number    下一个递归需要计算的值
 	 * @return 尾递归接口, 调用invoke启动及早求值获得结果
 	 */
-	public static TailRecursion<BigInteger> factorialTailRecursion1(final BigInteger factorial, final BigInteger number) {
+	public static TailRecursion<BigInteger> factorialTailRecursion1(final BigInteger factorial,
+			final BigInteger number) {
 		if (number.equals(BigInteger.ONE))
 			return TailInvoke.done(factorial);
 		else
-			return TailInvoke.call(() -> factorialTailRecursion1(factorial.multiply(number), number.subtract(BigInteger.ONE)));
+			return TailInvoke
+					.call(() -> factorialTailRecursion1(factorial.multiply(number), number.subtract(BigInteger.ONE)));
 	}
 
 

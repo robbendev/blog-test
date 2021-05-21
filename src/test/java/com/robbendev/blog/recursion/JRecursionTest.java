@@ -5,13 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class JRecursionTest {
 
 	@Test
 	void factorialRecursion() {
-		JRecursion.factorialRecursion(BigInteger.valueOf(1000000L));
+		Examination.start();
+		BigInteger result = JRecursion.factorialRecursion(BigInteger.valueOf(10L));
+		System.out.println("计算结果:" + result);
+		Examination.end();
 	}
 
 	@Test
